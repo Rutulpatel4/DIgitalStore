@@ -10,6 +10,7 @@ using DigitalStore.Models;
 
 namespace DigitalStore.Controllers
 {
+    [Authorize(Roles = "Administrator")]
     public class ProductsController : Controller
     {
         private DigitalModel db = new DigitalModel();
@@ -53,6 +54,20 @@ namespace DigitalStore.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (Request.Files.Count > 0)
+                {
+                    var file = Request.Files[0];
+
+                    if (file.FileName != null && file.ContentLength > 0)
+                    {
+                        // get file path dynamically
+                        string path = Server.MapPath("~/Content/Images/") + file.FileName;
+                        file.SaveAs(path);
+
+                        product.ProductUrl = "/Content/Images/" + file.FileName;
+                    }
+                }
+
                 db.Products.Add(product);
                 db.SaveChanges();
                 return RedirectToAction("Index");
