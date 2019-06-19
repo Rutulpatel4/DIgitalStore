@@ -18,7 +18,7 @@ namespace DigitalStore.Controllers
         // GET: Products
         public ActionResult Index()
         {
-            var products = db.Products.Include(p => p.Brand).Include(p => p.Category);
+            var products = db.Products.Include(p => p.Brand).Include(p => p.Category).OrderBy(p => p.Category.Name).ThenBy(p => p.Title);
             return View(products.ToList());
         }
 
@@ -40,8 +40,8 @@ namespace DigitalStore.Controllers
         // GET: Products/Create
         public ActionResult Create()
         {
-            ViewBag.BrandId = new SelectList(db.Brands, "BrandId", "Name");
-            ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "Name");
+            ViewBag.BrandId = new SelectList(db.Brands.OrderBy(b => b.Name), "BrandId", "Name");
+            ViewBag.CategoryId = new SelectList(db.Categories.OrderBy(c => c.Name), "CategoryId", "Name");
             return View();
         }
 
@@ -61,10 +61,10 @@ namespace DigitalStore.Controllers
                     if (file.FileName != null && file.ContentLength > 0)
                     {
                         // get file path dynamically
-                        string path = Server.MapPath("~/Content/Images/") + file.FileName;
+                        string path = Server.MapPath("~/Content/Img/") + file.FileName;
                         file.SaveAs(path);
 
-                        product.ProductUrl = "/Content/Images/" + file.FileName;
+                        product.ProductUrl = "/Content/Img/" + file.FileName;
                     }
                 }
 
@@ -77,7 +77,6 @@ namespace DigitalStore.Controllers
             ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "Name", product.CategoryId);
             return View(product);
         }
-
         // GET: Products/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -90,7 +89,7 @@ namespace DigitalStore.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.ProductId = new SelectList(db.Brands, "BrandId", "Name", product.ProductId);
+            ViewBag.BrandId = new SelectList(db.Brands, "BrandId", "Name", product.BrandId);
             ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "Name", product.CategoryId);
             return View(product);
         }
@@ -104,11 +103,25 @@ namespace DigitalStore.Controllers
         {
             if (ModelState.IsValid)
             {
+                //upload album cover if there is one
+                if (Request.Files.Count > 0)
+                {
+                    var file = Request.Files[0];
+
+                    if (file.FileName != null && file.ContentLength > 0)
+                    {
+                        //get file path dynamic
+                        string path = Server.MapPath("~/Content/Img/") + file.FileName;
+                        file.SaveAs(path);
+
+                        product.ProductUrl = "/Content/Img/" + file.FileName;
+                    }
+                }
                 db.Entry(product).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ProductId = new SelectList(db.Brands, "BrandId", "Name", product.ProductId);
+            ViewBag.BrandId = new SelectList(db.Brands, "BrandId", "Name", product.BrandId);
             ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "Name", product.CategoryId);
             return View(product);
         }

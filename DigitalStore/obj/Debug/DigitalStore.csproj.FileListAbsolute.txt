@@ -98,7 +98,6 @@ C:\Users\rutul\source\repos\DigitalStore\DigitalStore\bin\Microsoft.Owin.Securit
 C:\Users\rutul\source\repos\DigitalStore\DigitalStore\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\rutul\source\repos\DigitalStore\DigitalStore\bin\Microsoft.Owin.Security.OAuth.xml
 C:\Users\rutul\source\repos\DigitalStore\DigitalStore\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\rutul\source\repos\DigitalStore\DigitalStore\obj\Debug\DigitalStore.csprojAssemblyReference.cache
 C:\Users\rutul\source\repos\DigitalStore\DigitalStore\obj\Debug\DigitalStore.csproj.CoreCompileInputs.cache
 C:\Users\rutul\source\repos\DigitalStore\DigitalStore\obj\Debug\DigitalStore.csproj.CopyComplete
 C:\Users\rutul\source\repos\DigitalStore\DigitalStore\obj\Debug\DigitalStore.dll

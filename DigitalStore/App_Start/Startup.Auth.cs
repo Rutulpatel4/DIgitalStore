@@ -46,23 +46,23 @@ namespace DigitalStore
             app.UseTwoFactorRememberBrowserCookie(DefaultAuthenticationTypes.TwoFactorRememberBrowserCookie);
 
             // Uncomment the following lines to enable logging in with third party login providers
-            //app.UseMicrosoftAccountAuthentication(
-            //    clientId: "",
-            //    clientSecret: "");
+            app.UseMicrosoftAccountAuthentication(
+                clientId: "c836be7d-b198-4282-b3f3-96fbd78c4a64",
+                clientSecret: "xrWW6#tqfuvESSIT0720^(;");
 
             //app.UseTwitterAuthentication(
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: "316902472560350",
+               appSecret: "47c51c757d605c4b9969456ad629e5b7");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "506430912745-b200p70o7gsrd9se3gm8lg9hk7diugrr.apps.googleusercontent.com",
+                ClientSecret = "EFSHcXc82w0J5lyX-rRO7SDI"
+            });
         }
     }
 }
