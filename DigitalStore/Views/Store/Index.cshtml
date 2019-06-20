@@ -1,0 +1,21 @@
+﻿@model IEnumerable<DigitalStore.Models.Category>
+@{
+    ViewBag.Title = "Store";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Digital Store</h2>
+
+<p>Welcome to our store. Tell us What you like</p>
+
+<section class="container">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4 text-center well">
+            <h3>@item.Name</h3>
+            <a href="/Store/Products?category=@item.Name">
+                <button class="btn btn-primary"> shop Now >> </button>
+            </a>
+        </div>
+    }
+</section>

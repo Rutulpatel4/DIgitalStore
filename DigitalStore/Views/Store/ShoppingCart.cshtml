@@ -1,0 +1,62 @@
+﻿@model IEnumerable<DigitalStore.Models.Cart>
+
+@{
+    ViewBag.Title = "Shopping Cart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    decimal CartTotal = 0;
+}
+
+<h2>Shopping Cart</h2>
+
+<table class="table table-striped table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Product.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Count)
+        </th>
+        <th>
+            Price
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        //update the caet total
+        CartTotal += item.Product.Price * item.Count;
+        <tr>
+            <td>
+                <a href="/Albums/Details?id=@item.ProductId">
+                    @Html.DisplayFor(modelItem => item.Product.Title)
+                </a>
+                <br />
+                <img src="@item.Product.ProductUrl" alt="Cover" height="75" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Count)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product.Price)
+            </td>
+            <td>
+                @Html.ActionLink("Remove", "RemoveFromCart", new { id = item.RecordId }, new { @Class = "text-danger" })
+            </td>
+        </tr>
+    }
+    <tr>
+        <td></td>
+        <td>
+            <a href="/Store">
+                <button class="btn btn-primary"><< Keep Shopping</button>
+            </a>
+        </td>
+        <td>@String.Format("{0:c}", CartTotal)</td>
+        <td>
+            <a href="/Store/Checkout">
+                <button class="btn btn-primary">Checkout >></button>
+            </a>
+        </td>
+    </tr>
+</table>

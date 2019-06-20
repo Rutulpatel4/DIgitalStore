@@ -23,6 +23,9 @@ namespace DigitalStore.Models
         public string Username { get; set; }
 
         [StringLength(160)]
+        public string FirstName { get; set; }
+
+        [StringLength(160)]
         public string LastName { get; set; }
 
         [StringLength(70)]

@@ -102,3 +102,4 @@ C:\Users\rutul\source\repos\DigitalStore\DigitalStore\obj\Debug\DigitalStore.csp
 C:\Users\rutul\source\repos\DigitalStore\DigitalStore\obj\Debug\DigitalStore.csproj.CopyComplete
 C:\Users\rutul\source\repos\DigitalStore\DigitalStore\obj\Debug\DigitalStore.dll
 C:\Users\rutul\source\repos\DigitalStore\DigitalStore\obj\Debug\DigitalStore.pdb
+C:\Users\rutul\source\repos\DigitalStore\DigitalStore\obj\Debug\DigitalStore.csprojAssemblyReference.cache
