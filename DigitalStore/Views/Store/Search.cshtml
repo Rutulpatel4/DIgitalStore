@@ -1,0 +1,32 @@
+﻿
+
+@{
+    ViewBag.Title = "Search";
+}
+
+<h2>Search</h2>
+
+@using (Html.BeginForm("Search", "Store", FormMethod.Get))
+{
+    <p>
+        Brand: @Html.DropDownList("productBrand1", "All")
+        Title: @Html.TextBox("SearchString")
+        <input type="submit" value="Search" />
+    </p>
+}
+<section class="container">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4 text-center well">
+            <h4> @item.Title </h4>
+            <img src="@item.ProductUrl" alt="@item.Title" />
+            <div>
+                @String.Format("{0:c}", item.Price) <br />
+                @item.Brand.Name<br />
+                <a href="/Store/AddToCart?ProductId=@item.ProductId">
+                    <button class=" btn btn-primary">Add to Cart</button>
+                </a>
+            </div>
+        </div>
+    }
+</section>

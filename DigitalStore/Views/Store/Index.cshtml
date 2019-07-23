@@ -1,12 +1,23 @@
 ﻿@model IEnumerable<DigitalStore.Models.Category>
+
 @{
     ViewBag.Title = "Store";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
 <h2>Digital Store</h2>
 
 <p>Welcome to our store. Tell us What you like</p>
+
+@using (Html.BeginForm("Search", "Store", FormMethod.Get))
+{
+    <p>
+        Brand: @Html.DropDownList("productBrand2", "All")
+        Title: @Html.TextBox("SearchString")
+        <input type="submit" value="Search" />
+    </p>
+}
 
 <section class="container">
     @foreach (var item in Model)

@@ -11,14 +11,66 @@ namespace DigitalStore.Controllers
     {
         private DigitalModel db = new DigitalModel();
         // GET: Store
-        public ActionResult Index()
+        public ActionResult Index(string productBrand2, string searchString)
         {
 
-            var categories = db.Categories.OrderBy(g => g.Name).ToList();
+              var categories = db.Categories.OrderBy(g => g.Name).ToList();
+            var BrandList = new List<string>();
+
+            var BrandQry = from d in db.Products
+                           orderby d.Brand.Name
+                           select d.Brand.Name;
+
+            BrandList.AddRange(BrandQry.Distinct());
+            ViewBag.productBrand2 = new SelectList(BrandList);
+
+            var products = from p in db.Products
+                           select p;
+
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                products = products.Where(p => p.Title.Contains(searchString));
+            }
+
+            if (!string.IsNullOrEmpty(productBrand2))
+            {
+                products = products.Where(x => x.Brand.Name == productBrand2);
+            }
             return View(categories);
         }
 
-        //GET STORE/Products?Category
+        public ActionResult Search(string productBrand1, string searchString)
+        {
+            var BrandList = new List<string>();
+
+            var BrandQry = from d in db.Products
+                           orderby d.Brand.Name
+                           select d.Brand.Name;
+
+            BrandList.AddRange(BrandQry.Distinct());
+            ViewBag.productBrand1 = new SelectList(BrandList);
+            //ViewBag.productBrand = new SelectList(BrandList);
+
+            var products = from p in db.Products
+                           select p;
+
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                products = products.Where(p => p.Title.Contains(searchString));
+            }
+
+            if (!string.IsNullOrEmpty(productBrand1))
+            {
+                products = products.Where(x => x.Brand.Name == productBrand1);
+            }
+
+            return View(products);
+
+        }
+
+      //  GET STORE/Products? Category
         public ActionResult Products(string category)
         {
             var products = db.Products.Where(p => p.Category.Name == category).ToList();

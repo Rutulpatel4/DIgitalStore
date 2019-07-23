@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using DigitalStore.Models;
+using PagedList;
 
 namespace DigitalStore.Controllers
 {
@@ -16,11 +17,37 @@ namespace DigitalStore.Controllers
         private DigitalModel db = new DigitalModel();
 
         // GET: Products
-        public ActionResult Index()
+        public ActionResult Index( string productBrand, string searchString)
         {
-            var products = db.Products.Include(p => p.Brand).Include(p => p.Category).OrderBy(p => p.Category.Name).ThenBy(p => p.Title);
-            return View(products.ToList());
+              // var products = db.Products.Include(p => p.Brand).Include(p => p.Category).OrderBy(p => p.Category.Name).ThenBy(p => p.Title);
+            //  return View(products.ToList());
+
+
+            var BrandList = new List<string>();
+
+            var BrandQry = from d in db.Products
+                           orderby d.Brand.Name
+                           select d.Brand.Name;
+
+            BrandList.AddRange(BrandQry.Distinct());
+            ViewBag.productBrand = new SelectList(BrandList);
+
+            var products = from p in db.Products
+                           select p;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                products = products.Where(p => p.Title.Contains(searchString));
+            }
+
+            if (!string.IsNullOrEmpty(productBrand))
+            {
+                products = products.Where(x => x.Brand.Name == productBrand);
+            }
+
+            return View(products);
         }
+
 
         // GET: Products/Details/5
         public ActionResult Details(int? id)

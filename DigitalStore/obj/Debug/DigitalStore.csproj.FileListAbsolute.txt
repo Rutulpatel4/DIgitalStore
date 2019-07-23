@@ -103,3 +103,7 @@ C:\Users\rutul\source\repos\DigitalStore\DigitalStore\obj\Debug\DigitalStore.csp
 C:\Users\rutul\source\repos\DigitalStore\DigitalStore\obj\Debug\DigitalStore.dll
 C:\Users\rutul\source\repos\DigitalStore\DigitalStore\obj\Debug\DigitalStore.pdb
 C:\Users\rutul\source\repos\DigitalStore\DigitalStore\obj\Debug\DigitalStore.csprojAssemblyReference.cache
+C:\Users\rutul\source\repos\DigitalStore\DigitalStore\bin\PagedList.dll
+C:\Users\rutul\source\repos\DigitalStore\DigitalStore\bin\PagedList.Mvc.dll
+C:\Users\rutul\source\repos\DigitalStore\DigitalStore\bin\PagedList.xml
+C:\Users\rutul\source\repos\DigitalStore\DigitalStore\bin\PagedList.Mvc.xml

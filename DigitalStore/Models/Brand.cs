@@ -23,5 +23,10 @@ namespace DigitalStore.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Product> Products { get; set; }
+
+        internal bool StartsWith(string search)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
