@@ -54,9 +54,9 @@ namespace DigitalStore
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            app.UseFacebookAuthentication(
-               appId: "316902472560350",
-               appSecret: "47c51c757d605c4b9969456ad629e5b7");
+            //app.UseFacebookAuthentication(
+            //   appId: "316902472560350",
+            //   appSecret: "47c51c757d605c4b9969456ad629e5b7");
 
             app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             {
